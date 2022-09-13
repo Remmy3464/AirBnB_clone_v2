@@ -1,6 +1,8 @@
 <center> <h1>HBNB - The Console</h1> </center>
+# 0x0F. Python - Object-relational mapping
 
-This repository contains the initial stage of a student project to build a clone of the AirBnB website. This stage implements a backend interface, or console, to manage program data. Console commands allow the user to create, update, and destroy objects, as well as manage file storage. Using a system of JSON serialization/deserialization, storage is persistent between sessions.
+The goal of this project is to learn how to use an Object-relational mapper (ORM).
+The module MySQLdb will be used in Python to connect to a MySQL database, and then the module SQLAlchemy will be used.
 
 ---
 
