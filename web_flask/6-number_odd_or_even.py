@@ -1,63 +1,56 @@
 #!/usr/bin/python3
-"""Starts a Flask web application"""
+''' flask web application for task 3
+    0x04. AirBnB clone - Web framework
+'''
 
-from flask import Flask
-from flask import render_template
+from flask import Flask, escape, render_template
+
+
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello_holberton():
-    """Returns a string at the root route"""
+def hello():
+    '''returns a hello message'''
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Returns a string at the /hbnb route"""
+    '''returns a hello message'''
     return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def cisfun(text):
-    """Returns a string at the /c/<text> route,
-    expands the <text> variable"""
-    new = text.replace('_', ' ')
-    return 'C %s' % new
+def ctext(text):
+    '''returns a test message'''
+    return 'C {}'.format(escape(text).replace('_', ' '))
 
 
-@app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
+@app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def pythoniscool(text):
-    """Returns a string at the /python route, with a default text
-    of 'is cool', or the expansion of <text>"""
-    new = text.replace('_', ' ')
-    return 'Python %s' % new
+def pythontext(text='is cool'):
+    '''returns a test message'''
+    return 'Python {}'.format(escape(text).replace('_', ' '))
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def number(n):
-    """Returns a string at the /number/<n> route,
-    only if n is an int"""
-    if type(n) == int:
-        return '%i is a number' % n
+def numberRoute(n):
+    '''returns a test message'''
+    return '{} is a number'.format(n)
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_template(n):
-    """Returns a template at the /number_template/<n> route,
-    expanding route"""
-    if type(n) == int:
-        return render_template('5-number.html', n=n)
+def templateRoute(n):
+    '''returns a test template'''
+    return render_template('5-number.html', number=n)
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
-    """Returns a template at the /number_odd_or_even/<n>
-    route, display if the number is odd or even"""
-    if type(n) == int:
-        return render_template('6-number_odd_or_even.html', n=n)
+def template_odd_even_Route(n):
+    '''returns a test template'''
+    return render_template('6-number_odd_or_even.html', number=n)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host="0.0.0.0", port=5000)

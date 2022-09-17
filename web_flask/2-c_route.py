@@ -1,29 +1,30 @@
 #!/usr/bin/python3
-"""Starts a Flask web application"""
+''' flask web application for task 2
+    0x04. AirBnB clone - Web framework
+'''
 
-from flask import Flask
+from flask import Flask, escape
+
+
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello_holberton():
-    """Returns a string at the root route"""
+def hello():
+    '''returns a hello message'''
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Returns a string at the /hbnb route"""
+    '''returns a hello message'''
     return 'HBNB'
 
 
 @app.route('/c/<text>', strict_slashes=False)
-def cisfun(text):
-    """Returns a string at the /c/<text> route,
-    expands the <text> variable"""
-    new = text.replace('_', ' ')
-    return 'C %s' % new
-
+def ctext(text):
+    '''returns a test message'''
+    return 'C {}'.format(escape(text).replace('_', ' '))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host="0.0.0.0", port=5000)
